@@ -1,0 +1,44 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <body>
+    <h1>Login</h1>
+
+    <label for="usuario">Usuário:</label>
+    <input type="text" id="usuario" placeholder="Seu usuário" />
+
+    <label for="senha">Senha:</label>
+    <input type="password" id="senha" placeholder="Sua senha" />
+
+    <button onclick="fazerLogin()">Fazer Login</button>
+
+    <script>
+      async function fazerLogin() {
+        const usuario = document.getElementById("usuario").value;
+        const senha = document.getElementById("senha").value;
+
+        const response = await fetch("/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ usuario, senha }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Redirecionar para a página de consulta após o login
+          window.location.href = "/consulta";
+        } else {
+          alert("Falha no login. Verifique suas credenciais.");
+        }
+      }
+    </script>
+  </body>
+</html>

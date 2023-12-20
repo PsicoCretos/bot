@@ -1,0 +1,47 @@
+<!-- consulta.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consulta de CPF</title>
+  </head>
+  <body>
+    <h1>Consulta de CPF</h1>
+
+    <label for="cpf">CPF:</label>
+    <input type="text" id="cpf" placeholder="Digite o CPF" />
+
+    <button onclick="consultarCPF()">Consultar CPF</button>
+
+    <div id="resultado">
+      <!-- O resultado será exibido aqui -->
+    </div>
+
+    <script>
+      async function consultarCPF() {
+        const cpf = document.getElementById("cpf").value;
+        const cookie = document.cookie; // Se necessário, você pode obter o cookie dessa forma
+
+        const response = await fetch("/consultar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Cookie: cookie,
+          },
+          body: JSON.stringify({ cpf }),
+        });
+
+        const data = await response.json();
+
+        // Exibir resultado na página
+        const resultadoDiv = document.getElementById("resultado");
+        resultadoDiv.innerHTML = `
+                <p>CPF: ${data.cpf}</p>
+                <p>Valor Aleatório: R$ ${data.valor_aleatorio}</p>
+                <p>${data.mensagem}</p>
+            `;
+      }
+    </script>
+  </body>
+</html>
