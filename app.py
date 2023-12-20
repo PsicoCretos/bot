@@ -24,7 +24,7 @@ def login():
 def consulta():
     return render_template('consulta.html')
 
-# ... (código anterior)
+# ... (código anterior).
 
 @app.route('/consultar', methods=['POST'])
 def consultar_cpf():
