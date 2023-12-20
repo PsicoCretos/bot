@@ -32,7 +32,7 @@ def consultar_cpf():
     cookie = request.headers.get('Cookie')
 
     # Lógica de consulta aqui (substitua pelo seu código real)
-    # Neste exemplo, vou gerar um valor aleatório entre 1000 e 5000
+    # Neste exemplo, vou gerar um valor aleatório entre 1000 e 5000.
     valor_aleatorio = random.randint(1000, 5000)
 
     # Mensagem de crédito pré-aprovado
